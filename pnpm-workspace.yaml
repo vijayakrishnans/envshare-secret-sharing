@@ -1,0 +1,17 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+  - "tests/*"
+  - "tooling/*"
+
+# pnpm 10 blocks dependency build scripts unless allow-listed; wrangler's
+# workerd and esbuild need theirs to verify their platform binaries.
+onlyBuiltDependencies:
+  - esbuild
+  - workerd
+  - sharp
+
+# One @types/react for every package, so the app's React types and the
+# tests' (tests/web asks for ^19) are the same copy.
+overrides:
+  "@types/react": 19.0.12
